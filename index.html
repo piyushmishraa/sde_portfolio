@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyush Mishra — Software Engineer</title>
+<meta name="description" content="Piyush Mishra — Software Engineer. Full-stack developer & competitive programmer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0c0e0d;
+    --bg-raised: #121513;
+    --ink: #e7e6e1;
+    --ink-dim: #8b9089;
+    --ink-faint: #5a5f58;
+    --accent: #8fd4a8;
+    --accent-dim: #4f7a5e;
+    --line: #22261f;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- top nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(12,14,13,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:56px; }
+  .nav-id{ font-family:var(--mono); font-size:13px; color:var(--ink-dim); }
+  .nav-id .cursor{ color:var(--accent); animation:blink 1.1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .nav-links{ display:flex; gap:20px; font-family:var(--mono); font-size:13px; }
+  .nav-links a{ color:var(--ink-dim); transition:color .15s ease; }
+  .nav-links a:hover{ color:var(--accent); }
+
+  /* ---------- hero ---------- */
+  header.hero{ padding:88px 0 64px; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--accent);
+    display:flex; align-items:center; gap:8px; margin-bottom:20px;
+  }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); }
+  h1{
+    font-family:var(--mono); font-weight:600;
+    font-size:clamp(32px, 6vw, 46px);
+    line-height:1.15; letter-spacing:-0.01em;
+    color:var(--ink); margin-bottom:18px;
+  }
+  .hero p.lede{ font-size:17px; color:var(--ink-dim); max-width:56ch; margin-bottom:32px; }
+  .hero p.lede strong{ color:var(--ink); font-weight:500; }
+
+  .links-row{ display:flex; flex-wrap:wrap; gap:12px; }
+  .pill{
+    font-family:var(--mono); font-size:13px;
+    border:1px solid var(--line); padding:9px 16px; border-radius:3px;
+    color:var(--ink-dim); transition:border-color .15s ease, color .15s ease;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .pill:hover{ border-color:var(--accent-dim); color:var(--ink); }
+  .pill.primary{ border-color:var(--accent-dim); color:var(--accent); }
+  .pill.primary:hover{ background:var(--accent); color:var(--bg); }
+
+  /* ---------- sections ---------- */
+  section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-label{
+    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
+    text-transform:uppercase; letter-spacing:.12em; margin-bottom:28px;
+  }
+  .section-label::before{ content:'~/'; color:var(--accent-dim); }
+
+  /* about */
+  .about-text{ color:var(--ink-dim); font-size:15.5px; max-width:60ch; }
+  .about-text p + p{ margin-top:14px; }
+  .about-text .hl{ color:var(--ink); }
+
+  .stat-row{ display:flex; gap:32px; margin-top:28px; flex-wrap:wrap; }
+  .stat{ font-family:var(--mono); }
+  .stat .n{ font-size:22px; color:var(--accent); font-weight:600; }
+  .stat .l{ font-size:12px; color:var(--ink-faint); margin-top:2px; }
+
+  /* projects */
+  .project{
+    border:1px solid var(--line); border-radius:4px;
+    padding:24px; margin-bottom:16px;
+    background:var(--bg-raised);
+    transition:border-color .15s ease;
+  }
+  .project:hover{ border-color:var(--accent-dim); }
+  .project-top{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .project-name{ font-family:var(--mono); font-size:17px; font-weight:600; color:var(--ink); }
+  .project-tag{ font-family:var(--mono); font-size:11px; color:var(--accent); border:1px solid var(--accent-dim); padding:2px 8px; border-radius:20px; white-space:nowrap; }
+  .project-desc{ color:var(--ink-dim); font-size:14.5px; margin:12px 0 16px; max-width:62ch; }
+  .stack{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  .stack span{ font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); border:1px solid var(--line); padding:3px 9px; border-radius:3px; }
+  .project-links{ display:flex; gap:16px; font-family:var(--mono); font-size:13px; }
+  .project-links a{ color:var(--ink-dim); display:inline-flex; align-items:center; gap:6px; transition:color .15s ease; }
+  .project-links a:hover{ color:var(--accent); }
+  .project-links a::before{ content:'→'; }
+
+  /* skills */
+  .skill-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:20px; }
+  .skill-group h4{ font-family:var(--mono); font-size:12px; color:var(--accent); margin-bottom:10px; text-transform:uppercase; letter-spacing:.08em; }
+  .skill-group ul{ list-style:none; }
+  .skill-group li{ font-size:14px; color:var(--ink-dim); padding:3px 0; }
+
+  /* footer */
+  footer{ padding:48px 0 64px; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .fline{ font-family:var(--mono); font-size:12.5px; color:var(--ink-faint); }
+  footer .fline .accent{ color:var(--accent); }
+  footer .flinks{ display:flex; gap:18px; font-family:var(--mono); font-size:13px; }
+  footer .flinks a{ color:var(--ink-dim); transition:color .15s ease; }
+  footer .flinks a:hover{ color:var(--accent); }
+
+  @media (max-width:600px){
+    .nav-links{ display:none; }
+    header.hero{ padding:64px 0 48px; }
+    section{ padding:44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-id">piyush<span class="cursor">_</span></div>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">open to sde / full-stack / backend roles</div>
+    <h1>Piyush Mishra</h1>
+    <p class="lede">Full-stack developer who builds <strong>things people actually use</strong> — not just tutorial projects. Ships fast, cares about data models and clean APIs, and spends the rest of the time deep in graph problems.</p>
+    <div class="links-row">
+      <a class="pill primary" href="https://github.com/piyushmishraa" target="_blank" rel="noopener">GitHub</a>
+      <a class="pill" href="https://leetcode.com/u/seeker_69/" target="_blank" rel="noopener">LeetCode</a>
+      <a class="pill" href="#projects">View projects ↓</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-label">about</div>
+    <div class="about-text">
+      <p>CS graduate (KIET Group of Institutions, AKTU, 2025) with internship experience building <span class="hl">frontend performance optimizations</span> at Meliorist Developers. Currently building and shipping full-stack projects solo, from schema to deploy.</p>
+      <p>Most recently built <span class="hl">OnboardWatch</span> in under 24 hours to solve a real problem for hundreds of graduating engineers — it now has real, organic daily users. That's the kind of turnaround I look for: identify a real problem, ship something that works, iterate from there.</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="n">300+</div><div class="l">problems solved (CSES / LeetCode)</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">shipped full-stack projects</div></div>
+      <div class="stat"><div class="n">2025</div><div class="l">CS graduate, AKTU</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-label">projects</div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">OnboardWatch</div>
+        <div class="project-tag">live · real users</div>
+      </div>
+      <p class="project-desc">A crowd-sourced onboarding status tracker built for Wipro freshers stuck in indefinite onboarding delays. Built solo, end to end, in under 24 hours — and it's since picked up real organic traffic from people in the exact same situation.</p>
+      <div class="stack">
+        <span>Next.js 14</span><span>Drizzle ORM</span><span>Neon Postgres</span><span>TypeScript</span>
+      </div>
+      <div class="project-links">
+        <a href="https://onboardwatch.vercel.app" target="_blank" rel="noopener">Live demo</a>
+        <a href="https://github.com/piyushmishraa/Onboardwatch" target="_blank" rel="noopener">Source</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">Ritual</div>
+        <div class="project-tag">habit tracker</div>
+      </div>
+      <p class="project-desc">A habit tracker with heatmap-based progress visualization, built around a clean stats and history view. Migrated from local-only state to a proper Postgres-backed persistence layer.</p>
+      <div class="stack">
+        <span>React</span><span>Context API</span><span>Drizzle ORM</span><span>Neon Postgres</span>
+      </div>
+      <div class="project-links">
+        <a href="https://rituals-jet.vercel.app" target="_blank" rel="noopener">Live demo</a>
+        <a href="https://github.com/piyushmishraa/Rituals" target="_blank" rel="noopener">Source</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">Learn-Link</div>
+        <div class="project-tag">MERN</div>
+      </div>
+      <p class="project-desc">An e-learning platform with role-based access control and JWT authentication, covering the full MERN stack from schema design to protected API routes.</p>
+      <div class="stack">
+        <span>MongoDB</span><span>Express</span><span>React</span><span>Node.js</span><span>JWT</span>
+      </div>
+      <div class="project-links">
+        <a href="https://learn-link-frontend-peach.vercel.app" target="_blank" rel="noopener">Live demo</a>
+        <a href="https://github.com/piyushmishraa/learnLink_frontend" target="_blank" rel="noopener">Source</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">Netflix GPT</div>
+        <div class="project-tag">AI + streaming UI</div>
+      </div>
+      <p class="project-desc">A Netflix-style browsing experience with AI-powered recommendations, combining a movie metadata API with an LLM-driven suggestion layer and Firebase auth.</p>
+      <div class="stack">
+        <span>React</span><span>OpenAI API</span><span>TMDB API</span><span>Firebase</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/piyushmishraa/Netflix_GPT" target="_blank" rel="noopener">Source</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">skills</div>
+    <div class="skill-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <ul><li>JavaScript / TypeScript</li><li>Java</li><li>SQL</li><li>C++ (learning)</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <ul><li>React</li><li>Redux Toolkit</li><li>Tailwind CSS</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <ul><li>Node.js / Express</li><li>Drizzle ORM</li><li>PostgreSQL / Neon</li><li>MongoDB</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Practices</h4>
+        <ul><li>JWT / RBAC auth</li><li>REST API design</li><li>Git / GitHub</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>CP / DSA</h4>
+        <ul><li>Graph algorithms</li><li>DP, binary search</li><li>Java + fast I/O</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Tooling</h4>
+        <ul><li>Neovim (daily driver)</li><li>Tmux</li><li>Terminal-first workflow</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="fline">$ open to opportunities <span class="accent">— let's talk</span></div>
+    <div class="flinks">
+      <a href="https://github.com/piyushmishraa" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://leetcode.com/u/seeker_69/" target="_blank" rel="noopener">LeetCode</a>
+      <a href="mailto:your.email@example.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
